@@ -42,7 +42,7 @@ int main(){
      * latency = n*RTT / 2*n = (t2-t1) / (2*n)
      */
     if(rank == 0)
-        printf("%.10Lf us\n", 1000000.0 * (t2 - t1) / (2.0 * ITERATIONS));
+        printf("%.10Lf ms\n", 1000.0 * (t2 - t1) / (2.0 * ITERATIONS));
 
     MPI_Finalize();
     return 0;
