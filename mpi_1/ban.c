@@ -10,7 +10,7 @@
 
 
 #define LIMIT 63488
-#define ITERATIONS 1000000
+#define ITERATIONS 1000
 #define STEP 1024
 
 

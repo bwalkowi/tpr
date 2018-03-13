@@ -9,7 +9,7 @@
 #endif
 
 
-#define ITERATIONS 1000000
+#define ITERATIONS 1000
 
 
 int main(){
