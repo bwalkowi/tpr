@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <math.h>
 #include "mpi.h"
 
 
@@ -13,27 +14,26 @@ long long monte_carlo(long long iterations){
     for(long i = 0; i < iterations; ++i){
         x = RAND;
         y = RAND;
-        if((x*x + y*y) <= 1)
+        if((x*x + y*y) <= 1.0)
             ++in_circle;
     }
     return in_circle;
 }
 
 
-int main(int argc, char *argv[]){
+int main(int argc, char **argv){
+    if(argc < 2)
+        return -1;
+
     int rank, size;
     long double t1, t2;
-
-    int exponent = atoi(argv[1]);
-    long long iterations = 10;
-    for(int i = 1; i < exponent; ++i)
-        iterations *= 10;
+    long long iterations = pow(10, atoi(argv[1]));
 
     MPI_Init(NULL, NULL);
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &size);
 
-    srand(rank);
+    srand(time(NULL) + rank);
     long long in_circle_global;
     long long points_overall = size*iterations;
 
