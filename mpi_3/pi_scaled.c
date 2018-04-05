@@ -46,7 +46,7 @@ int main(int argc, char **argv){
     t2 = MPI_Wtime();
     
     if(rank == 0)
-        printf("%.10Lf %.10Lf\n", t2-t1, pi);
+        printf("%.10Lf %.10Lf\n", pi, t2-t1);
 
     MPI_Finalize();
     return 0;
